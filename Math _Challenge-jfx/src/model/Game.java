@@ -9,8 +9,24 @@ public class Game {
 	private int a;
 	private int b;
 
+	private Player currentP;
+	private Player root;
+
 	public Game() {
 
+	}
+
+	public void starGame(String name) {
+		Player nPlayer=new Player(name);
+		currentP=nPlayer;
+	}
+
+	public Player getCurrentP() {
+		return currentP;
+	}
+
+	public Player getRoot() {
+		return root;
 	}
 
 	public int getCorrectAnswer() {
@@ -53,7 +69,7 @@ public class Game {
 			failAnswer3--;
 		}
 		break;
-		
+
 		case(1):
 			correctAnswer=a-b;
 		min=correctAnswer-10;
@@ -71,9 +87,9 @@ public class Game {
 			failAnswer3--;
 		}
 		break;
-		
+
 		case(2):
-		correctAnswer=a*b;
+			correctAnswer=a*b;
 		min=correctAnswer-10;
 		max=correctAnswer+10;
 		failAnswer1=(int) Math.floor(Math.random()*(max-min)+min);
@@ -90,7 +106,7 @@ public class Game {
 		}
 		break;
 		case(3):
-		correctAnswer=a/b;
+			correctAnswer=a/b;
 		min=correctAnswer-10;
 		max=correctAnswer+10;
 		failAnswer1=(int) Math.floor(Math.random()*(max-min)+min);
@@ -146,52 +162,28 @@ public class Game {
 		return operation;
 	}
 
-		public String showOptions() {
-			String message="";
-			int option=(int)Math.floor(Math.random()*3);
-			switch(option) {
-			case(0):
-				message="A) "+correctAnswer+"           B) "+failAnswer1+"\n";
-				message+="C) "+failAnswer2+"           D) "+failAnswer3;
-				break;
-			case(1):
-				message="A) "+failAnswer2+"           B) "+correctAnswer+"\n";
-			message+="C) "+failAnswer3+"           C) "+failAnswer1;
-			break;
-			case(2):
-				message="A) "+failAnswer3+"           B) "+failAnswer2+"\n";
-			message+="C) "+failAnswer1+"           C) "+correctAnswer;
-			break;
-			case(3):
-				message="A) "+failAnswer1+"           B) "+failAnswer3+"\n";
-			message+="C) "+correctAnswer+"           D) "+failAnswer2;
-			break;
-			}
-			return message;
+	public String showCallenge() {
+		String message="";
+		int option=generateChallenge();
+		if(option==0) {
+			message=a+"+"+b;
 		}
-
-		public String showCallenge() {
-			String message="";
-			int option=generateChallenge();
-			if(option==0) {
-				message=a+"+"+b;
-			}
-			else if(option==1) {
-				message=a+"-"+b;
-			}
-			else if(option==2) {
-				message=a+"*"+b;
-			}
-			else if(option==3) {
-				message=a+"/"+b;
-			}
-			else if(option==4) {
-				message=a+"%"+b;
-			}
-			else {
-				message=a+"^"+2;
-			}
-			return message;
+		else if(option==1) {
+			message=a+"-"+b;
 		}
-
+		else if(option==2) {
+			message=a+"*"+b;
+		}
+		else if(option==3) {
+			message=a+"/"+b;
+		}
+		else if(option==4) {
+			message=a+"%"+b;
+		}
+		else {
+			message=a+"^"+2;
+		}
+		return message;
 	}
+
+}
