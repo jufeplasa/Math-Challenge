@@ -185,5 +185,45 @@ public class Game {
 		}
 		return message;
 	}
+	
+	public void addPlayer() {
+		Player np=currentP;
+		if(root == null){//vacía
+		
+			root = np;
+		}
+		else { //tiene al menos uno
+		
+			Player temp = root;
+			boolean added = false;
+			while( !added ) {
+				
+				if(np.getPoints()<=temp.getPoints()) {
+				
+					if( temp.getLeft() == null) {
+					
+						temp.setLeft(np);
+						added = true;
+					}
+					else {
+						temp = temp.getLeft();
+					}
+
+				}
+				else if(np.getPoints()>temp.getPoints()){
+				
+					if( temp.getRight() == null)
+					{
+						temp.setRight(np);
+						added = true;
+					}
+					else
+					{
+						temp = temp.getRight();
+					}
+				}
+			}
+		}
+	}
 
 }
