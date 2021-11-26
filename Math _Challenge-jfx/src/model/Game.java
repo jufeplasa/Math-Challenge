@@ -225,5 +225,56 @@ public class Game {
 			}
 		}
 	}
+	
+	
+	public Player findFirstPlace(Player aux) {
+		Player temp=null;
+		if(aux!=null) {
+			if(aux.getRight()!=null) {
+				temp=findFirstPlace(aux.getRight());
+			}
+			else {
+				temp=aux;
+			}
+		}
+		return temp;
+	}
+	
+	public Player findSecondPlace() {
+		Player firstPlace=findFirstPlace(root);
+		Player temp=null;
+		if(firstPlace.getUp()!=null) {
+			temp=firstPlace.getUp();
+		}
+		return temp;
+	}
+
+	
+	public Player findThirdPlace() {
+		Player secondPlace=findSecondPlace();
+		Player temp=null;
+		if(secondPlace.getUp()!=null) {
+			temp=secondPlace.getUp();
+		}
+		return temp;
+	}
+
+	public Player findFourthPlace() {
+		Player ThirdPlace= findThirdPlace();
+		Player temp=null;
+		if(ThirdPlace.getUp()!=null) {
+			temp=ThirdPlace.getUp();
+		}
+		return temp;
+	}
+
+	public Player findFithPlace() {
+		Player FourthPlace=findFourthPlace();
+		Player temp=null;
+		if(FourthPlace.getUp()!=null) {
+			temp=FourthPlace.getUp();
+		}
+		return temp;
+	}
 
 }
