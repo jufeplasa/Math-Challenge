@@ -48,6 +48,9 @@ public class GameGUI {
     private Label pointsLabel;
     
     @FXML
+    private Label timeOut;
+    
+    @FXML
     private Rectangle progressBar;
     
     
@@ -66,7 +69,7 @@ public class GameGUI {
 	}
 
     @FXML
-    public void startChallenge(ActionEvent event) throws IOException {
+    public void startChallenge(ActionEvent event) throws IOException, InterruptedException {
     	String namePlayer=nameField.getText();
     	if(namePlayer.isEmpty()) {
     		Alert alert=new Alert(null); 
@@ -88,14 +91,16 @@ public class GameGUI {
     		showOptions();
     		mainStage.show();
     		barThread.start();
-    		
+    		//barThread.join();
+    	
     	}
     }
+    
     
     public void showOptions() {
 
 
-		int option=(int)Math.floor(Math.random()*3);
+		int option=(int)Math.floor(Math.random()*4);
 		switch(option) {
 		case(0):
 			optionA.setText(game.getCorrectAnswer()+"");
@@ -135,15 +140,8 @@ public class GameGUI {
     	else {
     		game.getCurrentP().decreasePoints(); 
     	}
-    	FXMLLoader fxmlloader= new FXMLLoader (getClass().getResource("ChallengePage.fxml"));
-    	fxmlloader.setController(this);
-    	Parent root= fxmlloader.load();
-    	Scene scene= new Scene (root);
-		mainStage.setScene(scene);
-    	mainStage.setTitle("window2");
 		challengeLabel.setText(game.showCallenge());
 		showOptions();
-		mainStage.show();
     }
 
     @FXML
@@ -154,15 +152,8 @@ public class GameGUI {
     	else {
     		game.getCurrentP().decreasePoints(); 
     	}
-    	FXMLLoader fxmlloader= new FXMLLoader (getClass().getResource("ChallengePage.fxml"));
-    	fxmlloader.setController(this);
-    	Parent root= fxmlloader.load();
-    	Scene scene= new Scene (root);
-		mainStage.setScene(scene);
-    	mainStage.setTitle("window2");
 		challengeLabel.setText(game.showCallenge());
 		showOptions();
-		mainStage.show();
     }
 
     @FXML
@@ -173,15 +164,8 @@ public class GameGUI {
     	else {
     		game.getCurrentP().decreasePoints(); 
     	}
-    	FXMLLoader fxmlloader= new FXMLLoader (getClass().getResource("ChallengePage.fxml"));
-    	fxmlloader.setController(this);
-    	Parent root= fxmlloader.load();
-    	Scene scene= new Scene (root);
-		mainStage.setScene(scene);
-    	mainStage.setTitle("window2");
 		challengeLabel.setText(game.showCallenge());
 		showOptions();
-		mainStage.show();
     }
 
     @FXML
@@ -192,24 +176,93 @@ public class GameGUI {
     	else {
     		game.getCurrentP().decreasePoints(); 
     	}
-    	FXMLLoader fxmlloader= new FXMLLoader (getClass().getResource("ChallengePage.fxml"));
+		challengeLabel.setText(game.showCallenge());
+		showOptions();
+    }
+   
+    
+    public boolean fillProgressBar(int w) {
+    	progressBar.setWidth(w);
+       	return false;
+    }
+    int seconds;
+    
+    public void countSeconds() {
+    	seconds++;
+    	timeOut.setText(seconds+"");
+    }
+
+    @FXML
+    private Label posicionActual;
+
+    @FXML
+    private Label quintoPuesto;
+
+    @FXML
+    private Label cuartoPuesto;
+
+    @FXML
+    private Label tercerPuesto;
+
+    @FXML
+    private Label segundoPuesto;
+
+    @FXML
+    private Label primerPuesto;
+    
+    public void showFirstPLace() {
+    	if(game.findFirstPlace(game.getRoot())!=null) {
+    		primerPuesto.setText(game.findFirstPlace(game.getRoot()).toString());
+    	}
+    }
+    
+    public void showSecondPLace() {
+    	if(game.findSecondPlace()!=null) {
+    		segundoPuesto.setText(game.findSecondPlace().toString());
+    	}
+    }
+    
+    public void showThirdPLace() {
+    	if(game.findThirdPlace()!=null) {
+    		tercerPuesto.setText(game.findThirdPlace().toString());
+    	}
+    }
+    
+    public void showFourthPLace() {
+    	if(game.findFourthPlace()!=null) {
+    		cuartoPuesto.setText(game.findFourthPlace().toString());
+    	}
+    }
+    
+    public void showFifthPLace() {
+    	if(game.findFifthPlace()!=null) {
+        	quintoPuesto.setText(game.findFifthPlace().toString());
+    	}
+    }
+    
+    public void showCurrentPlayer() {
+    	posicionActual.setText("Hola");
+    }
+    
+    public void finishGame() throws IOException {
+    	game.addPlayer();
+    	showScoreBoard();
+    }
+    
+    public void showScoreBoard() throws IOException {
+    	
+    	FXMLLoader fxmlloader= new FXMLLoader (getClass().getResource("ScoreBoard.fxml"));
     	fxmlloader.setController(this);
     	Parent root= fxmlloader.load();
     	Scene scene= new Scene (root);
 		mainStage.setScene(scene);
-    	mainStage.setTitle("window2");
-		challengeLabel.setText(game.showCallenge());
-		showOptions();
+    	mainStage.setTitle("window3");
+    	showFirstPLace();
+    	showSecondPLace();
+    	showThirdPLace();
+    	showFourthPLace();
+    	showFifthPLace();
 		mainStage.show();
-    }
-    @FXML
-    public void callProgressBarThread() {
-    	 barThread.start();    	     	
-    }
-    public boolean fillProgressBar(int w) {
-    	progressBar.setWidth(w);
-       	return false;
-    	
     }
 
 

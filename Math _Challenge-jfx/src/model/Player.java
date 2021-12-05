@@ -59,5 +59,8 @@ public class Player {
 		this.left = left;
 	}
 
+	public String toString() {
+		return name+"      "+points;
+	}
 	
 }

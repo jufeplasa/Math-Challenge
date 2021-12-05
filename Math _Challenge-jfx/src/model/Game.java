@@ -50,7 +50,7 @@ public class Game {
 		b =(int)Math.floor(Math.random()*99);
 		int min;
 		int max;
-		int operation=(int)Math.floor(Math.random()*5);
+		int operation=(int)Math.floor(Math.random()*6);
 		switch(operation) {
 		case(0):
 			correctAnswer=a+b;
@@ -156,8 +156,6 @@ public class Game {
 			failAnswer3--;
 		}
 		break;	
-
-
 		}
 		return operation;
 	}
@@ -243,8 +241,10 @@ public class Game {
 	public Player findSecondPlace() {
 		Player firstPlace=findFirstPlace(root);
 		Player temp=null;
-		if(firstPlace.getUp()!=null) {
-			temp=firstPlace.getUp();
+		if(firstPlace!=null) {
+			if(firstPlace.getUp()!=null) {
+				temp=firstPlace.getUp();
+			}
 		}
 		return temp;
 	}
@@ -253,8 +253,10 @@ public class Game {
 	public Player findThirdPlace() {
 		Player secondPlace=findSecondPlace();
 		Player temp=null;
-		if(secondPlace.getUp()!=null) {
-			temp=secondPlace.getUp();
+		if(secondPlace!=null) {
+			if(secondPlace.getUp()!=null) {
+				temp=secondPlace.getUp();
+			}
 		}
 		return temp;
 	}
@@ -262,8 +264,10 @@ public class Game {
 	public Player findFourthPlace() {
 		Player ThirdPlace= findThirdPlace();
 		Player temp=null;
-		if(ThirdPlace.getUp()!=null) {
-			temp=ThirdPlace.getUp();
+		if(ThirdPlace!=null) {
+			if(ThirdPlace.getUp()!=null) {
+				temp=ThirdPlace.getUp();
+			}
 		}
 		return temp;
 	}
@@ -271,8 +275,10 @@ public class Game {
 	public Player findFifthPlace() {
 		Player FourthPlace=findFourthPlace();
 		Player temp=null;
-		if(FourthPlace.getUp()!=null) {
-			temp=FourthPlace.getUp();
+		if(FourthPlace!=null) {
+			if(FourthPlace.getUp()!=null) {
+				temp=FourthPlace.getUp();
+			}
 		}
 		return temp;
 	}

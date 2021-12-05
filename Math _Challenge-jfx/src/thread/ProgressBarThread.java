@@ -1,6 +1,10 @@
 package thread;
 
 
+
+import java.io.IOException;
+
+import javafx.application.Platform;
 import ui.GameGUI;
 
 public class ProgressBarThread extends Thread{
@@ -29,18 +33,32 @@ public class ProgressBarThread extends Thread{
 					mil = 0;
 					seg += 1;
 					width += 4;
-					gameGui.fillProgressBar(width);			
-					
-
+					gameGui.fillProgressBar(width);	
+					Platform.runLater(new Thread() {
+						public void run() {
+							
+							gameGui.countSeconds();
+						}
+					});
 					if(seg==30) {
 						cronometroActivo = false;
 					}
 				}
 			}
+			
 		}
 		catch(Exception e){}
 		seg=0;
-
+		Platform.runLater(new Thread() {
+			public void run() {
+				try {
+					gameGui.finishGame();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	public GameGUI getGameGUI() {
 		return gameGui;
