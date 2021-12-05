@@ -1,3 +1,8 @@
 /model/
 /ui/
+<<<<<<< Updated upstream
 /Thread/
+=======
+/threads/
+>>>>>>> Stashed changes
+/thread/

@@ -268,7 +268,7 @@ public class Game {
 		return temp;
 	}
 
-	public Player findFithPlace() {
+	public Player findFifthPlace() {
 		Player FourthPlace=findFourthPlace();
 		Player temp=null;
 		if(FourthPlace.getUp()!=null) {

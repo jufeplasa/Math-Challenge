@@ -12,13 +12,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Game;
+import thread.ProgressBarThread;
 
 public class GameGUI {
 
     private Game game;
+    
+    private ProgressBarThread barThread;
 
     private Stage mainStage;
     
@@ -42,11 +46,15 @@ public class GameGUI {
     
     @FXML
     private Label pointsLabel;
-
-
+    
+    @FXML
+    private Rectangle progressBar;
+    
+    
 	
 	public GameGUI() {
 		game=new Game();
+		barThread= new ProgressBarThread(this);
 	}
 	
 	public Stage getMainStage() {
@@ -79,6 +87,8 @@ public class GameGUI {
     		challengeLabel.setText(game.showCallenge());
     		showOptions();
     		mainStage.show();
+    		barThread.start();
+    		
     	}
     }
     
@@ -191,6 +201,15 @@ public class GameGUI {
 		challengeLabel.setText(game.showCallenge());
 		showOptions();
 		mainStage.show();
+    }
+    @FXML
+    public void callProgressBarThread() {
+    	 barThread.start();    	     	
+    }
+    public boolean fillProgressBar(int w) {
+    	progressBar.setWidth(w);
+       	return false;
+    	
     }
 
 
