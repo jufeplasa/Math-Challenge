@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -55,9 +56,11 @@ public class GameGUI {
     
     
 	
-	public GameGUI() {
+	public GameGUI() throws FileNotFoundException, ClassNotFoundException, IOException  {
 		game=new Game();
 		barThread= new ProgressBarThread(this);
+		
+		game.loadData();
 	}
 	
 	public Stage getMainStage() {
@@ -69,7 +72,9 @@ public class GameGUI {
 	}
 
     @FXML
-    public void startChallenge(ActionEvent event) throws IOException, InterruptedException {
+    public void startChallenge(ActionEvent event) throws IOException, InterruptedException, ClassNotFoundException {
+
+		game.loadData();
     	String namePlayer=nameField.getText();
     	if(namePlayer.isEmpty()) {
     		Alert alert=new Alert(null); 
@@ -246,6 +251,8 @@ public class GameGUI {
     
     public void finishGame() throws IOException {
     	game.addPlayer();
+    	game.addPlayer2();
+    	game.saveData();
     	showScoreBoard();
     }
     
@@ -264,6 +271,5 @@ public class GameGUI {
     	showFifthPLace();
 		mainStage.show();
     }
-
 
 }

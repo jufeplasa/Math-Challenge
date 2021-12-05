@@ -1,7 +1,18 @@
 package model;
 
-public class Game {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Game {
+	private static final String SAVE_DATA="data/players.dat";
+	
 	private int correctAnswer;
 	private int failAnswer1;
 	private int failAnswer2;
@@ -10,10 +21,15 @@ public class Game {
 	private int b;
 
 	private Player currentP;
+	private List<Player> player;
 	private Player root;
 
 	public Game() {
-
+		player= new ArrayList<Player>();
+	}
+	
+	public void addPlayer2() {
+		player.add(currentP);
 	}
 
 	public void starGame(String name) {
@@ -281,6 +297,30 @@ public class Game {
 			}
 		}
 		return temp;
+	}
+	
+	public void saveData() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(SAVE_DATA) );
+		oos.writeObject(player);
+		oos.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File f=new File(SAVE_DATA);
+		if (f.exists()) {
+			ObjectInputStream ois= new ObjectInputStream(new FileInputStream(f));
+			player=(List<Player>) ois.readObject();
+			ois.close();
+		}
+		chargeOnBT();
+	}
+	
+	public void chargeOnBT() {
+		for(int i=0;i<player.size();i++) {
+			currentP=player.get(i);
+			addPlayer();
+		}
 	}
 
 }

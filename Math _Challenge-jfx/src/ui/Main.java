@@ -1,5 +1,8 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application{
 	private static GameGUI gameGUi;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		gameGUi=new GameGUI();
 		launch(args);
 	}
