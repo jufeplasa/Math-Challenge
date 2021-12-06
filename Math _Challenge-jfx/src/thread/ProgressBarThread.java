@@ -45,7 +45,6 @@ public class ProgressBarThread extends Thread{
 					}
 				}
 			}
-			
 		}
 		catch(Exception e){}
 		seg=0;

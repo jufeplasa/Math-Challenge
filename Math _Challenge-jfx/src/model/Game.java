@@ -66,7 +66,7 @@ public class Game {
 		b =(int)Math.floor(Math.random()*99);
 		int min;
 		int max;
-		int operation=(int)Math.floor(Math.random()*6);
+		int operation=(int)Math.floor(Math.random()*4);
 		switch(operation) {
 		case(0):
 			correctAnswer=a+b;
@@ -137,40 +137,6 @@ public class Game {
 		if(failAnswer3==correctAnswer) {
 			failAnswer3--;
 		}
-		break;
-		case(4):
-			correctAnswer=a%b;
-		min=correctAnswer-10;
-		max=correctAnswer+10;
-		failAnswer1=(int) Math.floor(Math.random()*(max-min)+min);
-		failAnswer2=(int) Math.floor(Math.random()*(max-min)+min);
-		failAnswer3=(int) Math.floor(Math.random()*(max-min)+min);
-		if(failAnswer1==correctAnswer) {
-			failAnswer1++;
-		}
-		if(failAnswer2==correctAnswer) {
-			failAnswer2++;
-		}
-		if(failAnswer3==correctAnswer) {
-			failAnswer3--;
-		}
-		break;
-		case(5):
-			correctAnswer=a^2;
-		min=correctAnswer-10;
-		max=correctAnswer+10;
-		failAnswer1=(int) Math.floor(Math.random()*(max-min)+min);
-		failAnswer2=(int) Math.floor(Math.random()*(max-min)+min);
-		failAnswer3=(int) Math.floor(Math.random()*(max-min)+min);
-		if(failAnswer1==correctAnswer) {
-			failAnswer1++;
-		}
-		if(failAnswer2==correctAnswer) {
-			failAnswer2++;
-		}
-		if(failAnswer3==correctAnswer) {
-			failAnswer3--;
-		}
 		break;	
 		}
 		return operation;
@@ -191,17 +157,11 @@ public class Game {
 		else if(option==3) {
 			message=a+"/"+b;
 		}
-		else if(option==4) {
-			message=a+"%"+b;
-		}
-		else {
-			message=a+"^"+2;
-		}
 		return message;
 	}
 	
-	public void addPlayer() {
-		Player np=currentP;
+	public void addPlayer(Player newPlayer) {
+		Player np=newPlayer;
 		if(root == null){//vacía
 		
 			root = np;
@@ -217,6 +177,7 @@ public class Game {
 					if( temp.getLeft() == null) {
 					
 						temp.setLeft(np);
+						np.setUp(temp);
 						added = true;
 					}
 					else {
@@ -229,6 +190,7 @@ public class Game {
 					if( temp.getRight() == null)
 					{
 						temp.setRight(np);
+						np.setUp(temp);
 						added = true;
 					}
 					else
@@ -238,6 +200,17 @@ public class Game {
 				}
 			}
 		}
+	}
+	
+	public boolean esHoja(Player aux) {
+		if(aux.getRight()==null&&aux.getLeft()==null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	
 	}
 	
 	
@@ -258,13 +231,15 @@ public class Game {
 		Player firstPlace=findFirstPlace(root);
 		Player temp=null;
 		if(firstPlace!=null) {
+			if(esHoja(firstPlace)) {
+				temp=firstPlace.getUp();
+			}
 			if(firstPlace.getUp()!=null) {
 				temp=firstPlace.getUp();
 			}
 		}
 		return temp;
 	}
-
 	
 	public Player findThirdPlace() {
 		Player secondPlace=findSecondPlace();
@@ -318,8 +293,7 @@ public class Game {
 	
 	public void chargeOnBT() {
 		for(int i=0;i<player.size();i++) {
-			currentP=player.get(i);
-			addPlayer();
+			addPlayer(player.get(i));
 		}
 	}
 

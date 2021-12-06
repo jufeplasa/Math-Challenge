@@ -54,12 +54,28 @@ public class GameGUI {
     @FXML
     private Rectangle progressBar;
     
+    @FXML
+    private Label posicionActual;
+
+    @FXML
+    private Label quintoPuesto;
+
+    @FXML
+    private Label cuartoPuesto;
+
+    @FXML
+    private Label tercerPuesto;
+
+    @FXML
+    private Label segundoPuesto;
+
+    @FXML
+    private Label primerPuesto;
     
 	
 	public GameGUI() throws FileNotFoundException, ClassNotFoundException, IOException  {
 		game=new Game();
 		barThread= new ProgressBarThread(this);
-		
 		game.loadData();
 	}
 	
@@ -74,7 +90,6 @@ public class GameGUI {
     @FXML
     public void startChallenge(ActionEvent event) throws IOException, InterruptedException, ClassNotFoundException {
 
-		game.loadData();
     	String namePlayer=nameField.getText();
     	if(namePlayer.isEmpty()) {
     		Alert alert=new Alert(null); 
@@ -96,7 +111,6 @@ public class GameGUI {
     		showOptions();
     		mainStage.show();
     		barThread.start();
-    		//barThread.join();
     	
     	}
     }
@@ -197,23 +211,7 @@ public class GameGUI {
     	timeOut.setText(seconds+"");
     }
 
-    @FXML
-    private Label posicionActual;
 
-    @FXML
-    private Label quintoPuesto;
-
-    @FXML
-    private Label cuartoPuesto;
-
-    @FXML
-    private Label tercerPuesto;
-
-    @FXML
-    private Label segundoPuesto;
-
-    @FXML
-    private Label primerPuesto;
     
     public void showFirstPLace() {
     	if(game.findFirstPlace(game.getRoot())!=null) {
@@ -250,9 +248,8 @@ public class GameGUI {
     }
     
     public void finishGame() throws IOException {
-    	game.addPlayer();
+    	game.addPlayer(game.getCurrentP());
     	game.addPlayer2();
-    	game.saveData();
     	showScoreBoard();
     }
     
@@ -270,6 +267,8 @@ public class GameGUI {
     	showFourthPLace();
     	showFifthPLace();
 		mainStage.show();
+
+    	game.saveData();
     }
 
 }
