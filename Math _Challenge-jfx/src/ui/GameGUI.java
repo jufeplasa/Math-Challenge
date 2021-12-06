@@ -18,12 +18,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Game;
 import thread.ProgressBarThread;
+import thread.SaveDataThread;
 
 public class GameGUI {
 
     private Game game;
     
     private ProgressBarThread barThread;
+    
+    private SaveDataThread st;
 
     private Stage mainStage;
     
@@ -60,7 +63,7 @@ public class GameGUI {
     @FXML
     private Label quintoPuesto;
 
-    @FXML
+    @		FXML
     private Label cuartoPuesto;
 
     @FXML
@@ -74,9 +77,11 @@ public class GameGUI {
     
 	
 	public GameGUI() throws FileNotFoundException, ClassNotFoundException, IOException  {
-		game=new Game();
+		game=new Game();	
 		barThread= new ProgressBarThread(this);
-		game.loadData();
+		st= new SaveDataThread(game);
+		
+		st.start();
 	}
 	
 	public Stage getMainStage() {
@@ -89,7 +94,7 @@ public class GameGUI {
 
     @FXML
     public void startChallenge(ActionEvent event) throws IOException, InterruptedException, ClassNotFoundException {
-
+    	
     	String namePlayer=nameField.getText();
     	if(namePlayer.isEmpty()) {
     		Alert alert=new Alert(null); 
@@ -253,6 +258,21 @@ public class GameGUI {
     	showScoreBoard();
     }
     
+    @FXML
+    public void DeletedInfo(ActionEvent event) {
+
+    }
+    @FXML
+    public void saveInfo(ActionEvent event) throws FileNotFoundException, IOException {
+    	game.saveData();
+    	Alert alert=new Alert(null); 
+		alert.setAlertType(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText("Save data successful");
+		alert.setContentText("Your party has save");
+		alert.showAndWait();
+    }
+    
     public void showScoreBoard() throws IOException {
     	
     	FXMLLoader fxmlloader= new FXMLLoader (getClass().getResource("ScoreBoard.fxml"));
@@ -268,7 +288,6 @@ public class GameGUI {
     	showFifthPLace();
 		mainStage.show();
 
-    	game.saveData();
     }
 
 }

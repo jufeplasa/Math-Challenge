@@ -21,15 +21,11 @@ public class ProgressBarThread extends Thread{
 		int mil=0;
 		int width=0;
 		boolean cronometroActivo = true;
-		try
-		{
-			while( cronometroActivo )
-			{
+		try{
+			while( cronometroActivo ) {
 				Thread.sleep( 4 );
 				mil += 4;
-
-				if( mil == 1000 )
-				{
+				if( mil == 1000 ){
 					mil = 0;
 					seg += 1;
 					width += 4;

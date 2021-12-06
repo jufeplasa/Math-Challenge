@@ -1,76 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="215.0" layoutY="56.0" prefHeight="51.0" prefWidth="171.0" text="Score Board" textFill="#0a0000">
+      <Label layoutX="219.0" layoutY="14.0" prefHeight="51.0" prefWidth="171.0" text="Score Board" textFill="#0a0000">
          <font>
             <Font name="System Bold Italic" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="118.0" prefHeight="40.0" prefWidth="32.0" text="1" textFill="#c9c600">
+      <Label layoutX="47.0" layoutY="95.0" prefHeight="40.0" prefWidth="32.0" text="1" textFill="#c9c600">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="174.0" text="2" textFill="#8d8d8d">
+      <Label layoutX="45.0" layoutY="142.0" text="2" textFill="#8d8d8d">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="221.0" text="3" textFill="#d37304">
+      <Label layoutX="45.0" layoutY="198.0" text="3" textFill="#d37304">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="268.0" text="4" textFill="#2e3206">
+      <Label layoutX="45.0" layoutY="245.0" text="4" textFill="#2e3206">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="315.0" text="5" textFill="#860303">
+      <Label layoutX="45.0" layoutY="292.0" text="5" textFill="#860303">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="372.0" prefHeight="40.0" prefWidth="184.0" text="Tu posición fue:">
+      <Label layoutX="38.0" layoutY="342.0" prefHeight="40.0" prefWidth="184.0" text="Tu posición fue:">
          <font>
             <Font name="System Italic" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="posicionActual" layoutX="237.0" layoutY="369.0" prefHeight="47.0" prefWidth="110.0">
+      <Label fx:id="posicionActual" layoutX="237.0" layoutY="339.0" prefHeight="47.0" prefWidth="255.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="quintoPuesto" layoutX="130.0" layoutY="315.0" prefHeight="47.0" prefWidth="296.0">
+      <Label fx:id="quintoPuesto" layoutX="130.0" layoutY="292.0" prefHeight="47.0" prefWidth="296.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="cuartoPuesto" layoutX="129.0" layoutY="268.0" prefHeight="47.0" prefWidth="296.0">
+      <Label fx:id="cuartoPuesto" layoutX="130.0" layoutY="245.0" prefHeight="47.0" prefWidth="296.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="tercerPuesto" layoutX="129.0" layoutY="221.0" prefHeight="47.0" prefWidth="296.0">
+      <Label fx:id="tercerPuesto" layoutX="130.0" layoutY="197.0" prefHeight="47.0" prefWidth="296.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="segundoPuesto" layoutX="129.0" layoutY="174.0" prefHeight="47.0" prefWidth="296.0">
+      <Label fx:id="segundoPuesto" layoutX="130.0" layoutY="142.0" prefHeight="47.0" prefWidth="296.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="primerPuesto" layoutX="129.0" layoutY="118.0" prefHeight="47.0" prefWidth="296.0">
+      <Label fx:id="primerPuesto" layoutX="130.0" layoutY="95.0" prefHeight="47.0" prefWidth="296.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
+      <Button layoutX="167.0" layoutY="393.0" mnemonicParsing="false" onAction="#saveInfo" text="Save" />
+      <Button layoutX="347.0" layoutY="393.0" mnemonicParsing="false" onAction="#DeletedInfo" text="Deleted" />
    </children>
 </Pane>

@@ -14,6 +14,7 @@ public class Main extends Application{
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		gameGUi=new GameGUI();
 		launch(args);
+		
 	}
 
 	@Override
