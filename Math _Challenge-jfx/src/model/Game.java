@@ -234,8 +234,12 @@ public class Game {
 			if(esHoja(firstPlace)) {
 				temp=firstPlace.getUp();
 			}
-			if(firstPlace.getUp()!=null) {
-				temp=firstPlace.getUp();
+			else{
+				Player aux=firstPlace.getLeft();
+				while(aux.getRight()!=null) {
+					aux=aux.getRight();
+				}
+				aux=temp;
 			}
 		}
 		return temp;
@@ -245,8 +249,15 @@ public class Game {
 		Player secondPlace=findSecondPlace();
 		Player temp=null;
 		if(secondPlace!=null) {
-			if(secondPlace.getUp()!=null) {
+			if(esHoja(secondPlace)) {
 				temp=secondPlace.getUp();
+			}
+			else{
+				Player aux=secondPlace.getLeft();
+				while(aux.getRight()!=null) {
+					aux=aux.getRight();
+				}
+				aux=temp;
 			}
 		}
 		return temp;
@@ -256,8 +267,15 @@ public class Game {
 		Player ThirdPlace= findThirdPlace();
 		Player temp=null;
 		if(ThirdPlace!=null) {
-			if(ThirdPlace.getUp()!=null) {
+			if(esHoja(ThirdPlace)) {
 				temp=ThirdPlace.getUp();
+			}
+			else{
+				Player aux=ThirdPlace.getLeft();
+				while(aux.getRight()!=null) {
+					aux=aux.getRight();
+				}
+				aux=temp;
 			}
 		}
 		return temp;
@@ -267,8 +285,15 @@ public class Game {
 		Player FourthPlace=findFourthPlace();
 		Player temp=null;
 		if(FourthPlace!=null) {
-			if(FourthPlace.getUp()!=null) {
+			if(esHoja(FourthPlace)) {
 				temp=FourthPlace.getUp();
+			}
+			else{
+				Player aux=FourthPlace.getLeft();
+				while(aux.getRight()!=null) {
+					aux=aux.getRight();
+				}
+				aux=temp;
 			}
 		}
 		return temp;

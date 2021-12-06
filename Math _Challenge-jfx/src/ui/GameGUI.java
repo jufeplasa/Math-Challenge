@@ -262,6 +262,8 @@ public class GameGUI {
     public void DeletedInfo(ActionEvent event) {
 
     }
+    
+    
     @FXML
     public void saveInfo(ActionEvent event) throws FileNotFoundException, IOException {
     	game.saveData();
